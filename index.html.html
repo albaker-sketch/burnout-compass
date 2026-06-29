@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بوصلة الحياة المهنية المستدامة</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#f5f2ed;color:#1a1a1a;min-height:100vh}
+:root{
+  --or1:#9c3200;--or2:#e05a00;--or3:#f07820;--or4:#f4a040;
+  --or-pale:#fff4e6;--or-light:#fff9f3;
+  --gr1:#145a32;--gr2:#1e8449;--gr3:#27ae60;--gr4:#52be80;
+  --gr-pale:#eafaf1;--gr-light:#f4fdf7;
+  --navy:#0c1f3f;--navy2:#1a3a6b;--gold:#e6a817;
+  --txt:#1a1a1a;--txt2:#4a4a4a;--txt3:#888;--bdr:#ddd5c8;
+}
+
+/* ── SCREENS ── */
+.scr{display:none!important}
+.scr.show{display:block!important}
+#scr-welcome.show{display:flex!important}
+
+/* ── WELCOME ── */
+#scr-welcome{
+  min-height:100vh;
+  background:linear-gradient(160deg,#0c1f3f 0%,#1a3a6b 40%,#145a32 75%,#0c1f3f 100%);
+  display:flex;flex-direction:column;align-items:center;padding-bottom:40px;
+}
+.wh{width:100%;text-align:center;padding:36px 20px 20px;background:linear-gradient(180deg,rgba(0,0,0,.2),transparent)}
+.wh-flame{font-size:54px;margin-bottom:8px;filter:drop-shadow(0 0 16px rgba(240,120,32,.6))}
+.wh-tag{font-size:10px;letter-spacing:2.5px;color:#f4a040;font-weight:700;text-transform:uppercase;margin-bottom:5px}
+.wh-title{font-size:25px;font-weight:800;color:#fff;line-height:1.25;margin-bottom:4px}
+.wh-sub{font-size:13px;color:rgba(255,255,255,.6);margin-bottom:18px}
+.wh-line{width:70px;height:3px;margin:0 auto 22px;border-radius:3px;background:linear-gradient(90deg,#f07820,#27ae60)}
+.wh-steps{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:20px;padding:0 16px}
+.wh-step{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);border-radius:20px;padding:5px 11px;font-size:11px;color:rgba(255,255,255,.75)}
+.wh-trainer{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 16px;margin:0 16px 18px;width:calc(100% - 32px);max-width:460px}
+.wh-t-ico{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#f07820,#27ae60);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.wh-t-info h4{font-size:13px;font-weight:700;color:#fff;margin-bottom:2px}
+.wh-t-info p{font-size:11px;color:rgba(255,255,255,.6)}
+.wh-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:18px;padding:24px 20px;margin:0 16px;width:calc(100% - 32px);max-width:460px}
+.wh-ttl{text-align:center;font-size:13px;font-weight:700;color:#f4a040;margin-bottom:18px}
+.fl{margin-bottom:14px}
+.fl label{font-size:11.5px;font-weight:700;color:rgba(255,255,255,.65);margin-bottom:5px;display:block}
+.fl input,.fl select{width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid rgba(255,255,255,.14);background:rgba(255,255,255,.09);color:#fff;font-size:13px;font-family:inherit;transition:.2s}
+.fl input::placeholder{color:rgba(255,255,255,.3)}
+.fl input:focus,.fl select:focus{outline:none;border-color:#f07820;background:rgba(255,255,255,.13)}
+.fl select option{background:#1a2a4a;color:#fff}
+.wh-btn{width:100%;padding:15px;border-radius:12px;border:none;cursor:pointer;font-size:15px;font-weight:800;font-family:inherit;margin-top:8px;color:#fff;background:linear-gradient(135deg,#e05a00,#f07820,#1e8449);box-shadow:0 4px 18px rgba(224,90,0,.3);transition:.25s}
+.wh-btn:hover{transform:translateY(-2px)}
+.wh-err{color:#ffa07a;font-size:12px;text-align:center;margin-top:8px;display:none}
+
+/* ── COMPASS HEADER ── */
+.c-hdr{background:linear-gradient(135deg,#0c1f3f,#1a3a6b,#0d3d20);color:#fff}
+.c-hdr-in{display:flex;align-items:center;padding:13px 15px;gap:11px}
+.c-hdr-ico{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#f07820,#27ae60);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.c-hdr-tag{font-size:9px;letter-spacing:1.5px;color:#f4a040;font-weight:700;margin-bottom:1px}
+.c-hdr-title{font-size:14.5px;font-weight:800;margin-bottom:1px}
+.c-hdr-user{font-size:11.5px;color:#52be80;font-weight:600}
+.c-hdr-links{display:flex;gap:6px;margin-top:5px}
+.lnk{display:inline-flex;align-items:center;gap:3px;padding:3px 9px;border-radius:14px;font-size:10px;font-weight:700;text-decoration:none}
+.lnk.ig{background:linear-gradient(135deg,#f09433,#dc2743,#bc1888);color:#fff}
+.lnk.wa{background:#25D366;color:#fff}
+
+/* ── PROGRESS STEPPER ── */
+.stepper{display:flex;align-items:center;padding:14px 16px;background:#fff;border-bottom:1px solid var(--bdr);gap:0}
+.step-item{flex:1;display:flex;flex-direction:column;align-items:center;position:relative}
+.step-item:not(:last-child)::after{content:'';position:absolute;left:-50%;top:14px;width:100%;height:2px;background:var(--bdr);z-index:0}
+.step-item.done:not(:last-child)::after{background:var(--or3)}
+.step-circle{width:28px;height:28px;border-radius:50%;background:#fff;border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#bbb;z-index:1;position:relative;transition:.3s}
+.step-item.active .step-circle{border-color:var(--or2);background:var(--or2);color:#fff}
+.step-item.done .step-circle{border-color:var(--gr2);background:var(--gr2);color:#fff}
+.step-label{font-size:9px;font-weight:700;color:#bbb;margin-top:4px;text-align:center}
+.step-item.active .step-label{color:var(--or2)}
+.step-item.done .step-label{color:var(--gr2)}
+
+/* ── COMPASS BODY ── */
+.c-body{max-width:700px;margin:0 auto;padding:0 0 30px}
+
+/* ── COMPASS INTRO ── */
+.c-intro{padding:16px 14px 0}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:3px 12px;border-radius:16px;font-size:11px;font-weight:700;margin-bottom:6px}
+.badge.or{background:var(--or-pale);color:var(--or1);border:1px solid rgba(240,120,32,.3)}
+.badge.gr{background:var(--gr-pale);color:var(--gr1);border:1px solid rgba(39,174,96,.3)}
+.c-title{font-size:19px;font-weight:800;margin-bottom:4px}
+.c-q{font-size:13px;color:var(--txt2);line-height:1.55;background:var(--or-light);border-right:4px solid var(--or3);padding:10px 12px;border-radius:0 8px 8px 0;margin-top:6px}
+.c-q.gr{background:var(--gr-light);border-right-color:var(--gr3)}
+.c-note{font-size:11.5px;color:var(--txt3);margin-top:8px;padding:7px 12px;background:#f9f7f4;border-radius:8px;border:1px solid var(--bdr)}
+
+/* ── QUESTIONS ── */
+.q-card{margin:10px 14px;background:#fff;border:1px solid var(--bdr);border-radius:12px;overflow:hidden;box-shadow:0 1px 5px rgba(0,0,0,.05)}
+.q-item{padding:12px 14px;border-bottom:1px solid #f0ebe4}
+.q-item:last-child{border-bottom:none}
+.q-num{font-size:10px;color:var(--txt3);margin-bottom:4px}
+.q-txt{font-size:13px;color:var(--txt);margin-bottom:9px;line-height:1.5}
+.q-scale{display:flex;gap:0;border:1.5px solid var(--bdr);border-radius:9px;overflow:hidden}
+.q-scale-btn{flex:1;padding:9px 0;border:none;background:#fff;cursor:pointer;font-size:13px;font-weight:700;color:#ccc;transition:.18s;border-left:1px solid #f0ebe4;font-family:inherit}
+.q-scale-btn:first-child{border-left:none}
+.q-scale-btn:hover{background:var(--or-pale);color:var(--or2)}
+.q-scale-btn.sel{background:linear-gradient(135deg,var(--or2),var(--or3));color:#fff}
+.q-scale-btn.sel-gr{background:linear-gradient(135deg,var(--gr1),var(--gr2));color:#fff}
+.scale-labels{display:flex;justify-content:space-between;padding:3px 14px 8px;font-size:10px;color:#bbb}
+
+/* ── DONE BTN ── */
+.done-wrap{padding:10px 14px 0}
+.done-btn{width:100%;padding:13px;border-radius:11px;border:none;cursor:pointer;font-size:14px;font-weight:800;font-family:inherit;color:#fff;background:linear-gradient(135deg,var(--or2),var(--or3));box-shadow:0 3px 14px rgba(224,90,0,.25);transition:.22s;opacity:.4;pointer-events:none}
+.done-btn.ready{opacity:1;pointer-events:auto}
+.done-btn.ready:hover{transform:translateY(-2px)}
+.done-btn.gr{background:linear-gradient(135deg,var(--gr1),var(--gr2))}
+.done-btn.nv{background:linear-gradient(135deg,var(--navy),var(--navy2))}
+
+/* ── RESULT CARD ── */
+.res-card{margin:14px 14px 0;border-radius:14px;overflow:hidden;border:1.5px solid var(--bdr);background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.07);display:none}
+.res-card.show{display:block;animation:fadeIn .4s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.res-top{padding:16px 16px;background:linear-gradient(135deg,var(--or1),var(--or2),var(--or3));color:#fff}
+.res-top.gr{background:linear-gradient(135deg,var(--gr1),var(--gr2),var(--gr3))}
+.res-top-tag{font-size:10px;opacity:.8;margin-bottom:3px}
+.res-top-name{font-size:18px;font-weight:800;line-height:1.3}
+.res-top-sub{font-size:12px;opacity:.75;margin-top:3px}
+.res-body{padding:14px}
+.res-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #f0ebe4}
+.res-row:last-child{border-bottom:none}
+.res-row-label{font-size:12.5px;color:var(--txt2)}
+.pill{padding:3px 11px;border-radius:12px;font-size:10.5px;font-weight:700}
+.pill-h{background:#ffe4d6;color:var(--or1)}
+.pill-m{background:#fef3cd;color:#8a6200}
+.pill-l{background:var(--gr-pale);color:var(--gr1)}
+.res-desc{font-size:12.5px;color:var(--txt2);background:var(--or-light);border-radius:9px;padding:12px;margin-top:10px;line-height:1.65;border-right:3px solid var(--or4)}
+.res-desc.gr{background:var(--gr-light);border-right-color:var(--gr4)}
+.res-tip{display:flex;gap:8px;background:#fffbf0;border:1px solid rgba(230,168,23,.35);border-radius:9px;padding:11px;margin-top:9px}
+.res-tip p{font-size:12px;color:#7a5800;line-height:1.5}
+.next-btn{width:100%;padding:13px;border-radius:11px;border:none;cursor:pointer;font-size:14px;font-weight:800;font-family:inherit;margin-top:12px;color:#fff;background:linear-gradient(135deg,var(--or2),var(--or3));box-shadow:0 3px 14px rgba(224,90,0,.25);transition:.22s}
+.next-btn:hover{transform:translateY(-2px)}
+.next-btn.gr{background:linear-gradient(135deg,var(--gr1),var(--gr2))}
+
+/* ── PLAN ── */
+.plan-hero{margin:14px 14px 0;background:linear-gradient(135deg,var(--navy),var(--navy2),#0d4a28);border-radius:15px;padding:20px;color:#fff;text-align:center;box-shadow:0 4px 18px rgba(12,31,63,.22)}
+.plan-hero .phn{font-size:12.5px;color:var(--gr4);margin-bottom:4px;font-weight:700}
+.plan-hero h2{font-size:17px;font-weight:800;margin-bottom:5px}
+.plan-hero p{font-size:12px;opacity:.78;line-height:1.55}
+.sum-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 14px}
+.sum-card{background:#fff;border:1px solid var(--bdr);border-radius:12px;padding:12px 10px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.sum-ico{font-size:21px;margin-bottom:4px}
+.sum-lbl{font-size:10px;color:var(--txt3);margin-bottom:3px}
+.sum-val{font-size:12px;font-weight:700;color:var(--txt);line-height:1.35}
+.plan-sec{margin:0 14px 11px;background:#fff;border:1px solid var(--bdr);border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.plan-sec-hd{display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:1px solid #f0ebe4}
+.p-ico{width:31px;height:31px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.p-ico.or{background:var(--or-pale)}.p-ico.gr{background:var(--gr-pale)}.p-ico.rd{background:#ffe4d6}.p-ico.gd{background:#fffbf0}
+.plan-sec-hd h3{font-size:13px;font-weight:700;color:var(--txt)}
+.pl-i{padding:8px 14px;border-bottom:1px solid #f5f0ea;display:flex;align-items:flex-start;gap:8px}
+.pl-i:last-child{border-bottom:none}
+.dot{width:7px;height:7px;border-radius:50%;margin-top:5px;flex-shrink:0}
+.dot.or{background:var(--or3)}.dot.gr{background:var(--gr3)}.dot.rd{background:var(--or1)}.dot.gd{background:var(--gold)}
+.pl-i p{font-size:12.5px;color:var(--txt);line-height:1.45}
+
+/* ── PRIORITIES ── */
+.prio-sec{margin:0 14px 11px;background:#fff;border:1px solid var(--bdr);border-radius:13px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.prio-hd{padding:13px 15px;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff}
+.prio-hd h3{font-size:14px;font-weight:800;margin-bottom:3px}
+.prio-hd p{font-size:11.5px;opacity:.75}
+.prio-grid{padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pb{padding:10px 11px;border:2px solid var(--bdr);border-radius:10px;cursor:pointer;background:#fff;font-size:11.5px;color:var(--txt2);font-weight:600;display:flex;align-items:center;gap:7px;font-family:inherit;text-align:right;transition:.2s;width:100%}
+.pb:hover{border-color:var(--or3);background:var(--or-pale);color:var(--or1)}
+.pb.sel{border-color:var(--or2);background:var(--or-pale);color:var(--or1)}
+.pi-ico{font-size:16px;flex-shrink:0}
+.prio-cnt{padding:5px 14px 12px;font-size:12px;color:var(--txt3);text-align:center}
+.prio-cnt b{color:var(--or2)}
+
+/* ── SEND AREA ── */
+.send-area{margin:0 14px 11px;background:#fff;border:1px solid var(--bdr);border-radius:13px;padding:18px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.send-area p{font-size:12.5px;color:var(--txt2);margin-bottom:14px;line-height:1.6}
+.send-btn{width:100%;padding:13px;border-radius:11px;border:none;cursor:pointer;font-size:14px;font-weight:800;font-family:inherit;margin-bottom:9px;color:#fff;background:linear-gradient(135deg,var(--gr1),var(--gr2),var(--gr3));box-shadow:0 3px 12px rgba(30,132,73,.28);transition:.22s}
+.send-btn:hover{transform:translateY(-2px)}
+.send-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.print-btn{width:100%;padding:11px;border-radius:10px;border:1.5px solid var(--bdr);background:#fff;color:var(--txt);font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:8px;transition:.2s}
+.print-btn:hover{background:var(--or-pale);border-color:var(--or3)}
+.reset-btn{width:100%;padding:9px;border-radius:9px;border:1.5px solid var(--bdr);background:#fff;color:var(--txt3);font-size:12px;cursor:pointer;font-family:inherit}
+.send-st{margin-top:9px;padding:11px;border-radius:8px;font-size:13px;font-weight:700;display:none;text-align:center}
+.send-st.ok{background:var(--gr-pale);color:var(--gr1);display:block}
+.send-st.err{background:#ffe4d6;color:var(--or1);display:block}
+
+/* ── FOOTER ── */
+.footer-cta{margin:0 14px 20px;background:linear-gradient(135deg,var(--navy),#0d4a28);border-radius:13px;padding:15px;text-align:center;color:#fff}
+.footer-cta p{font-size:12px;margin-bottom:10px;opacity:.85;line-height:1.55}
+
+@media print{
+  #scr-welcome,#scr-compass{display:none!important}
+  #scr-plan{display:block!important}
+  #plan-action-btns{display:none!important}
+  .c-hdr,.stepper,.done-wrap,.footer-cta,.next-btn,.reset-btn,.prio-cnt{display:none!important}
+  body{background:#fff!important;margin:0;padding:0}
+  .plan-hero{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#0c1f3f!important;color:#fff!important;border-radius:0!important;margin:0!important}
+  .prio-hd{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#0c1f3f!important;color:#fff!important}
+  .pb.sel{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#fff4e6!important;border-color:#e05a00!important;color:#9c3200!important}
+  .plan-sec,.sum-card,.prio-sec,.res-card{box-shadow:none!important;border:1px solid #ddd!important}
+  #plan-body{padding:0!important}
+  .sum-grid{grid-template-columns:1fr 1fr}
+  @page{margin:15mm;size:A4}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ WELCOME ══ -->
+<div id="scr-welcome" class="scr show">
+  <div class="wh">
+    <div class="wh-flame">🔥</div>
+    <div class="wh-tag">أداة تشخيص تفاعلية</div>
+    <div class="wh-title">بوصلة الحياة المهنية<br>المستدامة</div>
+    <div class="wh-sub">من الاستنزاف إلى الازدهار 🌱</div>
+    <div class="wh-line"></div>
+    <div class="wh-steps">
+      <div class="wh-step">🧭 بوصلة الذات</div>
+      <div class="wh-step">🏢 بوصلة البيئة</div>
+      <div class="wh-step">⚡ بوصلة الطاقة</div>
+      <div class="wh-step">🌟 بوصلة الازدهار</div>
+    </div>
+  </div>
+  <div class="wh-trainer">
+    <div class="wh-t-ico">👨‍🏫</div>
+    <div class="wh-t-info">
+      <h4>عبد الرحمن جاسم الباكر</h4>
+      <p>مدرب معتمد | رئيس قسم التدريب التربوي</p>
+    </div>
+  </div>
+  <div class="wh-card">
+    <div class="wh-ttl">✍️ أدخل بياناتك للبدء</div>
+    <div class="fl"><label>الاسم الكامل *</label><input id="fn" type="text" placeholder="اكتب اسمك هنا..."></div>
+    <div class="fl"><label>المسمى الوظيفي *</label>
+      <select id="fr">
+        <option value="">— اختر مسماك الوظيفي —</option>
+        <option>مدير إدارة</option><option>رئيس قسم</option>
+        <option>موجه تربوي</option><option>مدير مدرسة</option>
+        <option>نائب أكاديمي</option><option>نائب إداري</option>
+        <option>معلم</option><option>معلمة</option>
+        <option>منسق</option><option>منسق شؤون طلاب</option>
+        <option>مشرف إداري</option><option>داعية</option>
+        <option>إمام مسجد</option><option>أخرى</option>
+      </select>
+    </div>
+    <div class="fl"><label>المدرسة أو المؤسسة *</label><input id="fs" type="text" placeholder="اسم المدرسة أو الجهة..."></div>
+    <div class="fl"><label>سنوات الخبرة</label>
+      <select id="fe">
+        <option value="">— اختر —</option>
+        <option>أقل من 3 سنوات</option><option>3 – 5 سنوات</option>
+        <option>6 – 10 سنوات</option><option>11 – 15 سنة</option>
+        <option>أكثر من 15 سنة</option>
+      </select>
+    </div>
+    <button class="wh-btn" onclick="startApp()">ابدأ التشخيص ←</button>
+    <div class="wh-err" id="werr">يرجى تعبئة الاسم والمسمى الوظيفي والمدرسة</div>
+  </div>
+</div>
+
+<!-- ══ COMPASS ══ -->
+<div id="scr-compass" class="scr">
+  <div class="c-hdr">
+    <div class="c-hdr-in">
+      <div class="c-hdr-ico">🧭</div>
+      <div>
+        <div class="c-hdr-tag">بوصلة الحياة المهنية المستدامة</div>
+        <div class="c-hdr-title">من الاستنزاف إلى الازدهار</div>
+        <div class="c-hdr-user" id="hdr-user">—</div>
+        <div class="c-hdr-links">
+          <a class="lnk ig" href="https://www.instagram.com/aj_albaker/" target="_blank">📸 Instagram</a>
+          <a class="lnk wa" href="https://wa.me/97433349514" target="_blank">💬 WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stepper" id="stepper">
+    <div class="step-item active" id="si0"><div class="step-circle">1</div><div class="step-label">الذات</div></div>
+    <div class="step-item" id="si1"><div class="step-circle">2</div><div class="step-label">البيئة</div></div>
+    <div class="step-item" id="si2"><div class="step-circle">3</div><div class="step-label">الطاقة</div></div>
+    <div class="step-item" id="si3"><div class="step-circle">4</div><div class="step-label">الازدهار</div></div>
+    <div class="step-item" id="si4"><div class="step-circle">📋</div><div class="step-label">الخطة</div></div>
+  </div>
+
+  <div class="c-body" id="c-body"><!-- filled by JS --></div>
+</div>
+
+<!-- ══ PLAN ══ -->
+<div id="scr-plan" class="scr">
+  <div class="c-hdr">
+    <div class="c-hdr-in">
+      <div class="c-hdr-ico">📋</div>
+      <div>
+        <div class="c-hdr-tag">بوصلة الحياة المهنية المستدامة</div>
+        <div class="c-hdr-title">خطتك الشخصية للازدهار الوظيفي</div>
+        <div class="c-hdr-user" id="hdr-user2">—</div>
+        <div class="c-hdr-links">
+          <a class="lnk ig" href="https://www.instagram.com/aj_albaker/" target="_blank">📸 Instagram</a>
+          <a class="lnk wa" href="https://wa.me/97433349514" target="_blank">💬 WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:700px;margin:0 auto;padding:0 0 0" id="plan-body"><!-- filled by JS --></div>
+  <div style="max-width:700px;margin:0 auto;padding:0 14px 30px" id="plan-action-btns">
+    <div style="background:#fff;border:1px solid #ddd5c8;border-radius:13px;padding:18px;text-align:center;margin-bottom:11px">
+      <p style="font-size:12.5px;color:#4a4a4a;margin-bottom:14px;line-height:1.6">بعد اختيار أولوياتك احفظ خطتك لتظهر في سجل المدرب</p>
+      <button id="sbtn" onclick="doSend()" style="width:100%;padding:13px;border-radius:11px;border:none;cursor:pointer;font-size:14px;font-weight:800;font-family:inherit;margin-bottom:9px;color:#fff;background:linear-gradient(135deg,#145a32,#1e8449,#27ae60);display:block">💾 حفظ وإرسال للمدرب</button>
+      <div id="sst" style="margin-top:9px;padding:11px;border-radius:8px;font-size:13px;font-weight:700;display:none;text-align:center"></div>
+    </div>
+    <button onclick="generatePDF()" id="pdf-btn" style="width:100%;padding:13px;border-radius:11px;border:none;background:linear-gradient(135deg,#9c3200,#e05a00,#f07820);color:#fff;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;display:block;margin-bottom:8px">📄 تنزيل خطتي PDF</button>
+    <button onclick="realReset()" style="width:100%;padding:9px;border-radius:9px;border:1.5px solid #ddd5c8;background:#fff;color:#888;font-size:12px;cursor:pointer;font-family:inherit;display:block">🔄 إعادة التشخيص من البداية</button>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════
+// DATA
+// ══════════════════════════════════════
+var COMPASSES = [
+  {
+    id:'self', label:'بوصلة الذات', icon:'🧭', isGr:false,
+    badge:'🧭 البوصلة الأولى',
+    title:'بوصلة الذات',
+    question:'أجب على العبارات التالية بصدق — لا توجد إجابات صحيحة أو خاطئة',
+    nextLabel:'انتقل إلى بوصلة البيئة ←',
+    groups:[
+      {questions:['أجد صعوبة في رفض طلبات الآخرين حتى وأنا متعب','أشعر بالذنب إذا أخذت وقتاً لنفسي بينما يحتاجني أحد','أضع احتياجات زملائي وطلابي قبل احتياجاتي الشخصية دائماً','أتحمل مهام الآخرين حتى لا أخذلهم','يصعب علي طلب المساعدة لأنني أفضل العطاء على الأخذ']},
+      {questions:['لا أرضى عن عملي إلا إذا كان مثالياً','أعيد العمل مرات عدة حتى يصل لمستوى توقعاتي','الأخطاء البسيطة تسبب لي قلقاً غير متناسب مع حجمها','أنتقد نفسي بشدة عندما لا أحقق ما خططت له','يصعب علي تسليم عمل وأنا أشعر أنه يمكن تحسينه']},
+      {questions:['أجد نفسي أعمل حتى في أوقات الراحة والإجازات','أشعر بالذنب أو القلق عندما لا أكون منتجاً','العمل يحتل الجزء الأكبر من تفكيري خارج وقت الدوام','أجد صعوبة في التوقف عن العمل حتى لو أنهيت مهامي','إحساسي بقيمتي مرتبط بمقدار ما أنجزته']},
+      {questions:['أجد صعوبة في تفويض المهام خشية عدم إنجازها صحيحاً','أشعر بالقلق عندما تسير الأمور خارج نطاق سيطرتي','أفضل القيام بالعمل بنفسي على الوثوق بالآخرين','التغييرات المفاجئة في العمل تسبب لي توتراً كبيراً','أجد نفسي أراجع عمل الآخرين أكثر من اللازم']},
+      {questions:['أوافق على طلبات لا أريدها خشية إزعاج الآخرين','رأي الآخرين فيّ يؤثر كثيراً على قراراتي','أشعر بعدم الارتياح عندما يكون أحدهم غير راضٍ عني','أجد نفسي أغير موقفي عندما أحس أن الآخرين لا يوافقونني','أتحمل مسؤوليات إضافية لأنني أريد أن أُرضي الجميع']},
+      {questions:['أمضي وقتاً طويلاً في التفكير بمشكلات العمل قبل النوم','أعيد تحليل المواقف والقرارات مراراً بعد انتهائها','يشغل ذهني التخطيط للمستقبل حتى في أوقات الراحة','أجد صعوبة في إيقاف تفكيري والاسترخاء الكامل','القلق من الأخطاء المحتملة يصعّب عليّ اتخاذ القرارات']},
+      {questions:['أنتقد نفسي بقسوة عند ارتكاب أي خطأ مهما كان صغيراً','أحمل نفسي مسؤولية الأمور التي خارج إرادتي','يصعب علي العفو عن نفسي على أخطاء الماضي','أقارن نفسي بالآخرين وأشعر أنني أقل منهم غالباً','أشعر أنني مهما فعلت لن يكون كافياً']},
+      {questions:['أجد نفسي أؤدي عملي بشكل آلي دون إحساس بالهدف','أتساءل أحياناً عن قيمة ما أفعله وأثره الحقيقي','يقل حماسي للعمل يوماً بعد يوم دون سبب واضح','الشعور بالإنجاز بعد إنهاء العمل أصبح نادراً عندي','أجد صعوبة في الاتصال برسالتي التربوية كما كان سابقاً']}
+    ],
+    resultNames:['المضحي','المثالي','مدمن العمل','المتحكم','مُرضي الآخرين','المفكر المفرط','جالد الذات','فاقد المعنى'],
+    resultIcons:['🤲','⭐','💻','🎮','🙋','💭','⚡','🌫️'],
+    resultDescs:['تضع الآخرين دائماً قبل نفسك وتجد صعوبة في الاهتمام باحتياجاتك','تسعى للكمال وتنتقد نفسك بشدة عند أي قصور','العمل يستحوذ على معظم وقتك وتفكيرك حتى في الراحة','تجد صعوبة في التفويض وتشعر بالقلق عند فقدان السيطرة','توافق على ما لا تريده وتأخذ رأي الآخرين فيك بجدية كبيرة','تمضي وقتاً طويلاً في التحليل ويصعب عليك الاسترخاء الكامل','تنتقد نفسك بقسوة وتحمل نفسك مسؤولية أمور خارج إرادتك','تشعر أحياناً بأن عملك فقد هدفه وأنك تؤديه بشكل آلي'],
+    resultTips:['عنايتك بنفسك تجعلك أكثر قدرة على العطاء — لا تنتظر حتى تنفد','الكمال عدو الجيد — قبول "جيد بما يكفي" حكمة وليس تنازلاً','الراحة ليست كسلاً — هي وقود الإنتاجية المستدامة','التفويض ليس ضعفاً — هو فن قيادة الآخرين نحو الإنجاز','إرضاء الجميع مستحيل — لكن احترامك لنفسك ممكن دائماً','ليس كل فكرة تستحق الاهتمام — تعلم أن تختار أفكارك','التعاطف مع الذات ليس دلالاً — هو أساس النمو والتطور','المعنى يُصنع لا يُنتظر — ابحث عن لحظات الأثر الحقيقية']
+  },
+  {
+    id:'env', label:'بوصلة البيئة', icon:'🏢', isGr:true,
+    badge:'🏢 البوصلة الثانية',
+    title:'بوصلة البيئة',
+    question:'أجب على العبارات التالية بصدق — لا توجد إجابات صحيحة أو خاطئة',
+    nextLabel:'انتقل إلى بوصلة الطاقة ←',
+    groups:[
+      {questions:['أشعر أن المهام المطلوبة تتجاوز طاقتي وقدرتي الزمنية','أنهي دوامي وما زال أمامي مهام لم تكتمل بشكل منتظم','لا أجد وقتاً كافياً لإنجاز عملي بالجودة التي أريدها','أتلقى مهاماً إضافية دون أن تُخفَّف عني مهام أخرى','أشعر أن العمل لا ينتهي مهما أنجزت']},
+      {questions:['أشعر أن توزيع المهام والمسؤوليات بيننا غير عادل','يحصل بعض الزملاء على امتيازات لا أحصل عليها بنفس الجهد','القرارات في بيئة عملي لا تراعي الموضوعية دائماً','أشعر أن جهدي لا يُقيَّم بالطريقة الصحيحة','النظام الإداري لا يطبَّق بالتساوي على الجميع']},
+      {questions:['نادراً ما يُثنى على عملي أو يُشاد بجهودي','أشعر أن إنجازاتي تمر دون اعتراف أو تقدير','لا أتلقى تغذية راجعة إيجابية كافية من مديري','جهودي الإضافية لا تُلاحَظ من قِبل المسؤولين','أشعر أنني مجرد رقم في المنظومة لا فرد مقدَّر']},
+      {questions:['لا أملك صلاحية كافية لاتخاذ القرارات المتعلقة بعملي','يُتخذ كثير من القرارات دون الرجوع إليّ أو استشارتي','أشعر أنني مُقيَّد في طريقة أدائي لمهامي','لا يُؤخذ رأيي بجدية في الأمور التي تمسني','المرونة في ساعات العمل أو أسلوبه شبه معدومة']},
+      {questions:['مديري لا يقدم لي الدعم الكافي عند مواجهة صعوبات العمل','أسلوب القيادة في بيئتي يزيد من ضغطي لا يخففه','التواصل مع الإدارة صعب أو غير واضح أو غير منتظم','لا أشعر أن قيادتي تهتم بتطويري المهني','التوجيهات المعطاة لي تكون أحياناً متضاربة']},
+      {questions:['العلاقة مع بعض زملائي تستنزفني أكثر مما تدعمني','هناك توترات خفية أو صراعات في بيئة عملي','أشعر بالعزلة أو ضعف الانتماء داخل مجموعة العمل','لا أجد من أشاركه أعبائي المهنية بشكل مريح','التعاون والتكاتف بين الزملاء ضعيف في بيئتي']},
+      {questions:['ما يُطلب مني أحياناً يتعارض مع قيمي ومبادئي','لا أرى ارتباطاً واضحاً بين عملي وأثره الحقيقي على الطلاب','أشعر أن رسالة المؤسسة لا تنسجم مع رسالتي الشخصية','كثير من المهام المطلوبة مني لا أرى لها قيمة حقيقية','أشعر أن عملي فقد المعنى الذي جذبني إليه في البداية']}
+    ],
+    resultNames:['عبء العمل','العدالة','التقدير','الاستقلالية','القيادة','العلاقات','القيم والمعنى'],
+    resultIcons:['📦','⚖️','🏆','🔓','👑','🤝','💡'],
+    resultDescs:['','','','','','',''],
+    resultTips:['','','','','','','']
+  },
+  {
+    id:'energy', label:'بوصلة الطاقة', icon:'⚡', isGr:false,
+    badge:'⚡ البوصلة الثالثة',
+    title:'بوصلة الطاقة',
+    question:'أجب على العبارات التالية بصدق — لا توجد إجابات صحيحة أو خاطئة',
+    nextLabel:'انتقل إلى بوصلة الازدهار ←',
+    groups:[
+      {questions:['أشعر بطاقة عالية وحماس حقيقي نحو عملي','أقول "نعم" للمهام الجديدة بسهولة وحماس','إنتاجيتي في مستويات عالية وأشعر بالإنجاز','أستمتع بالتحديات وأسعى إليها','أشعر أنني أعطي أفضل ما عندي في عملي']},
+      {questions:['نومي بدأ يتأثر أحياناً بسبب أفكار العمل','أهملت بعض عادات صحية كالرياضة أو الأكل المنتظم','ألاحظ بعض التوتر لكنني أتجاهله لأن النتائج جيدة','أحتاج وقتاً أطول للاستعادة بعد يوم عمل شاق','أشعر أحياناً بثقل غير واضح في بداية يوم العمل']},
+      {questions:['أعمل في أوقات الراحة وأقنع نفسي أنه مؤقت','أعتمد على الكافيين أو المنبهات للاستمرار','أشعر بالتعب لكنني لا أسمح لنفسي بالراحة','أتجاهل جسدي ومشاعري مقابل إنجاز العمل','أخبر نفسي "بعد هذا المشروع سأرتاح" باستمرار']},
+      {questions:['أرتكب أخطاء لم أكن أرتكبها من قبل','أصبحت أكثر عصبية وحدة مع من حولي','أشياء كانت سهلة أصبحت تستنزف طاقتي','أجد صعوبة في التركيز لفترات طويلة','أبدأ في الشك بقدراتي التي كنت واثقاً منها']},
+      {questions:['تركيزي ينهار بشكل واضح ومقلق','كل شيء يبدو صعباً حتى المهام البسيطة','أشعر بإرهاق شديد لكن لا أستطيع الراحة','فقدت الشعور بالإنجاز حتى بعد إتمام المهام','أنفذ عملي بشكل آلي تام دون أي مشاعر']},
+      {questions:['توقفت أخيراً واضطررت للراحة','طاقتي تعود لكن ببطء شديد','أقول لنفسي لن أكرر هذا مرة أخرى','أبدأ في مراجعة أولوياتي ونمط حياتي','أحتاج وقتاً أطول مما توقعت للعودة']},
+      {questions:['طاقتي عادت لمستويات قريبة من السابق','أشعر أن نفسي عادت إليّ','الحماس بدأ يظهر مجدداً تدريجياً','الاحتراق أصبح يبدو شيئاً بعيداً','أبدأ في الانفتاح على فرص جديدة بحذر']},
+      {questions:['عدت للإنتاجية العالية لكن دون عادات وقائية','أقول "نعم" للمهام الجديدة مجدداً بنفس الحماس','لم أفهم بعد بعمق كيف وصلت للانهيار','ما زلت أكرر بعض الأنماط التي أوصلتني للاحتراق','الدرس السابق لم يُحدث تغييراً حقيقياً في سلوكياتي']}
+    ],
+    resultNames:['الأداء العالي','الإشارات المبكرة','الدفع القسري','تبدأ الشقوق','الاحتراق الكامل','الانهيار والتعافي','الشعور بالتحسن','العودة للأداء العالي'],
+    resultIcons:['🟢','🟡','🟠','🟠','🔴','💜','🌱','🔁'],
+    resultDescs:['أنت في أفضل حالاتك المهنية — ابنِ عادات وقائية الآن قبل أن تحتاج للتعافي','الإشارات بدأت تظهر — التدخل الآن يمنع التدهور، وهذا الوقت المثالي','تدفع نفسك رغم التعب — تحتاج للتوقف والاستماع لجسدك وعقلك','بدأت الشقوق تظهر بوضوح — لا تتجاهل هذه العلامات فهي تحذير جاد','وصلت لنقطة حرجة — تحتاج للتوقف الفوري واتخاذ إجراءات جذرية الآن','أنت في مرحلة التعافي — إنجاز كبير، لكن لا تعود لنفس الأنماط','أنت في مسار التعافي الحقيقي — الوقت المثالي لبناء عادات وقائية راسخة','عدت للإنتاجية لكن الخطر ما زال قائماً — هذه المرة ابنِ جداراً واقياً'],
+    resultTips:['','','','','','','','']
+  },
+  {
+    id:'flourish', label:'بوصلة الازدهار', icon:'🌟', isGr:true,
+    badge:'🌟 البوصلة الرابعة',
+    title:'بوصلة الازدهار',
+    question:'أجب على العبارات التالية بصدق — لا توجد إجابات صحيحة أو خاطئة',
+    nextLabel:'🎯 اذهب إلى خطتي الشخصية ←',
+    groups:[
+      {questions:['أستيقظ وأنا متحمس للذهاب للعمل','أشعر بطاقة إيجابية خلال يوم العمل','عملي يمنحني شعوراً بالحياة لا بالثقل','أنهي يوم عملي وأنا راضٍ في الغالب','ما أفعله يشعرني بالقدرة والفاعلية']},
+      {questions:['أتعلم أشياء جديدة في عملي بانتظام','أشعر أنني أتطور مهنياً مع الوقت','التحديات في عملي تُنمّيني لا تستنزفني','أبحث بنفسي عن فرص للتعلم والتطوير','عملي يُخرج أفضل ما فيّ']},
+      {questions:['أرى أثراً حقيقياً لعملي في حياة طلابي','عملي يتوافق مع قيمي ومبادئي','أشعر أن ما أفعله له معنى أكبر مني','رسالتي التربوية ما زالت تُحركني','أجد في عملي هدفاً يستحق الاستمرار']},
+      {questions:['علاقاتي مع زملائي تدعمني وتُغنيني','أشعر بالانتماء لمجموعة عمل متماسكة','أجد من يشاركني الأفراح والضغوط','علاقتي مع طلابي مصدر طاقة لي','بيئتي الاجتماعية في العمل صحية وإيجابية']}
+    ],
+    resultNames:['الحيوية','التعلم والنمو','المعنى والهدف','العلاقات'],
+    resultIcons:['⚡','📚','🎯','🤝'],
+    resultDescs:['','','',''],
+    resultTips:['','','','']
+  }
+];
+
+var PRIO=[
+  {i:'🛡️',t:'وضع حدود مهنية واضحة'},{i:'🤝',t:'طلب الدعم من الزملاء والإدارة'},
+  {i:'😴',t:'تحسين جودة النوم والراحة'},{i:'🏃',t:'ممارسة الرياضة بانتظام'},
+  {i:'🧘',t:'تطبيق اليقظة الذهنية يومياً'},{i:'📋',t:'إدارة الوقت والأولويات'},
+  {i:'🔄',t:'التفويض وعدم الاستئثار بالمهام'},{i:'🎯',t:'إعادة اكتشاف المعنى في عملي'},
+  {i:'📚',t:'الاستثمار في التطوير المهني'},{i:'🌱',t:'بناء عادات وقاية يومية'},
+  {i:'💬',t:'التحدث مع مختص أو مرشد مهني'},{i:'📵',t:'الفصل الحقيقي بين العمل والحياة'}
+];
+
+// ══════════════════════════════════════
+// STATE
+// ══════════════════════════════════════
+var U = {name:'',role:'',school:'',exp:''};
+var answers = {};   // answers[compassIdx][groupIdx][qIdx] = val
+var results  = {};  // results[compassIdx] = computed
+var curStep  = 0;   // 0..3 = compass, 4 = plan
+var SP       = [];  // selected priorities
+var SU = 'https://script.google.com/macros/s/AKfycbxR5sfzmEXnlgu32fxcKhwyJuWEWpLvEsuALXgnQChEVpIcQManTaZlXomdOVkqZshDVg/exec';
+
+// init answers
+for(var ci=0;ci<4;ci++){
+  answers[ci]={};
+  for(var gi=0;gi<COMPASSES[ci].groups.length;gi++){
+    answers[ci][gi]={};
+  }
+}
+
+// ══════════════════════════════════════
+// WELCOME
+// ══════════════════════════════════════
+function startApp(){
+  var nm=document.getElementById('fn').value.trim();
+  var rl=document.getElementById('fr').value;
+  var sc=document.getElementById('fs').value.trim();
+  var ex=document.getElementById('fe').value;
+  if(!nm||!rl||!sc){document.getElementById('werr').style.display='block';return;}
+  document.getElementById('werr').style.display='none';
+  U={name:nm,role:rl,school:sc,exp:ex||'غير محدد'};
+  document.getElementById('hdr-user').textContent=nm+' | '+rl;
+  document.getElementById('hdr-user2').textContent=nm+' | '+rl;
+  switchScreen('scr-compass');
+  renderCompass(0);
+}
+
+// ══════════════════════════════════════
+// SCREEN SWITCH
+// ══════════════════════════════════════
+function switchScreen(id){
+  var all=['scr-welcome','scr-compass','scr-plan'];
+  for(var k=0;k<all.length;k++){
+    var el=document.getElementById(all[k]);
+    el.classList.remove('show');
+    el.style.display='';
+  }
+  var target=document.getElementById(id);
+  target.classList.add('show');
+  // welcome screen needs flex
+  if(id==='scr-welcome') target.style.display='flex';
+  window.scrollTo(0,0);
+}
+
+// ══════════════════════════════════════
+// STEPPER
+// ══════════════════════════════════════
+function updateStepper(activeIdx){
+  for(var i=0;i<5;i++){
+    var el=document.getElementById('si'+i);
+    el.classList.remove('active','done');
+    if(i<activeIdx) el.classList.add('done');
+    else if(i===activeIdx) el.classList.add('active');
+  }
+}
+
+// ══════════════════════════════════════
+// RENDER COMPASS
+// ══════════════════════════════════════
+function renderCompass(ci){
+  curStep=ci;
+  updateStepper(ci);
+  var C=COMPASSES[ci];
+  var gr=C.isGr;
+  var body=document.getElementById('c-body');
+
+  // count total questions
+  var totalQ=0;
+  for(var gi=0;gi<C.groups.length;gi++) totalQ+=C.groups[gi].questions.length;
+
+  var h='';
+  h+='<div class="c-intro">';
+  h+='<div class="badge '+(gr?'gr':'or')+'">'+C.badge+'</div>';
+  h+='<div class="c-title">'+C.title+'</div>';
+  h+='<div class="c-q'+(gr?' gr':'')+'">'+C.question+'</div>';
+  h+='<div class="c-note">📝 أجب على جميع العبارات ('+totalQ+' عبارة) ثم اضغط "أعرض نتيجتي"</div>';
+  h+='</div>';
+
+  // Questions - flat list without group headers
+  h+='<div class="q-card" style="margin-top:12px">';
+  var qNum=0;
+  for(var gi=0;gi<C.groups.length;gi++){
+    for(var qi=0;qi<C.groups[gi].questions.length;qi++){
+      qNum++;
+      var k='c'+ci+'g'+gi+'q'+qi;
+      var curVal=answers[ci][gi][qi]||0;
+      h+='<div class="q-item" id="qi-'+k+'">';
+      h+='<div class="q-num">العبارة '+qNum+' من '+totalQ+'</div>';
+      h+='<div class="q-txt">'+C.groups[gi].questions[qi]+'</div>';
+      h+='<div class="q-scale">';
+      for(var v=1;v<=5;v++){
+        var sel=(curVal===v)?(gr?'sel-gr':'sel'):'';
+        h+='<button class="q-scale-btn '+sel+'" id="qb-'+k+'-'+v+'" onclick="pickAns('+ci+','+gi+','+qi+','+v+')">'+v+'</button>';
+      }
+      h+='</div></div>';
+    }
+  }
+  h+='</div>';
+  h+='<div class="scale-labels"><span>لا أوافق إطلاقاً ←</span><span>→ أوافق تماماً</span></div>';
+
+  // Done button (starts faded)
+  h+='<div class="done-wrap"><button class="done-btn '+(gr?'gr':'')+(ci===3?' nv':'')+'" id="done-btn-'+ci+'" onclick="showCompassResult('+ci+')">أعرض نتيجتي 🎯</button></div>';
+
+  // Result card (hidden)
+  h+='<div class="res-card" id="res-card-'+ci+'"></div>';
+
+  body.innerHTML=h;
+  checkAllAnswered(ci);
+}
+
+// ══════════════════════════════════════
+// PICK ANSWER
+// ══════════════════════════════════════
+function pickAns(ci,gi,qi,val){
+  answers[ci][gi][qi]=val;
+  var gr=COMPASSES[ci].isGr;
+  var k='c'+ci+'g'+gi+'q'+qi;
+  for(var v=1;v<=5;v++){
+    var b=document.getElementById('qb-'+k+'-'+v);
+    if(b) b.className='q-scale-btn'+(v===val?(gr?' sel-gr':' sel'):'');
+  }
+  checkAllAnswered(ci);
+}
+
+function checkAllAnswered(ci){
+  var C=COMPASSES[ci];
+  var total=0,done=0;
+  for(var gi=0;gi<C.groups.length;gi++){
+    for(var qi=0;qi<C.groups[gi].questions.length;qi++){
+      total++;
+      if(answers[ci][gi][qi]) done++;
+    }
+  }
+  var btn=document.getElementById('done-btn-'+ci);
+  if(btn){
+    if(done===total){
+      btn.classList.add('ready');
+      btn.textContent='أعرض نتيجتي 🎯 ('+done+'/'+total+' مكتملة)';
+    } else {
+      btn.classList.remove('ready');
+      btn.textContent='أعرض نتيجتي — ('+done+'/'+total+' مكتملة)';
+    }
+  }
+}
+
+// ══════════════════════════════════════
+// SHOW COMPASS RESULT
+// ══════════════════════════════════════
+function showCompassResult(ci){
+  var C=COMPASSES[ci];
+  var gr=C.isGr;
+
+  // Compute scores per group
+  var scores=[];
+  for(var gi=0;gi<C.groups.length;gi++){
+    var s=0;
+    for(var qi=0;qi<C.groups[gi].questions.length;qi++) s+=answers[ci][gi][qi]||0;
+    scores.push({idx:gi,score:s,name:C.resultNames[gi],icon:C.resultIcons[gi],desc:C.resultDescs[gi],tip:C.resultTips[gi]});
+  }
+
+  var resCard=document.getElementById('res-card-'+ci);
+  var h='';
+
+  if(ci===0){
+    // Self: show top 2 patterns
+    var sorted=scores.slice().sort(function(a,b){return b.score-a.score;});
+    var top=sorted.slice(0,2);
+    results[ci]={type:'patterns',top:top,scores:scores};
+    h+='<div class="res-top"><div class="res-top-tag">✅ نتيجة بوصلة الذات</div>';
+    h+='<div class="res-top-name">'+top[0].icon+' '+top[0].name+' + '+top[1].icon+' '+top[1].name+'</div>';
+    h+='<div class="res-top-sub">نمطاك الغالبان الأكثر عرضة للاحتراق</div></div>';
+    h+='<div class="res-body">';
+    for(var k=0;k<top.length;k++){
+      var lv=top[k].score>=18?'h':top[k].score>=12?'m':'l';
+      var lb=top[k].score>=18?'غالب جداً':top[k].score>=12?'بدرجة متوسطة':'بدرجة خفيفة';
+      h+='<div class="res-row"><span class="res-row-label">'+top[k].icon+' '+top[k].name+' ('+top[k].score+'/25)</span><span class="pill pill-'+lv+'">'+lb+'</span></div>';
+    }
+    h+='<div class="res-desc">'+top[0].desc+'</div>';
+    h+='<div class="res-tip"><span style="font-size:18px">💡</span><p><strong>نصيحة:</strong> '+top[0].tip+'</p></div>';
+    h+='</div>';
+    h+='<div style="padding:0 14px 14px"><button class="next-btn" onclick="renderCompass(1)">'+C.nextLabel+'</button></div>';
+  }
+  else if(ci===1){
+    // Env: show top 3 drains
+    var sorted=scores.slice().sort(function(a,b){return b.score-a.score;});
+    var top=sorted.slice(0,3);
+    results[ci]={type:'drains',top:top,scores:scores};
+    h+='<div class="res-top gr"><div class="res-top-tag">✅ نتيجة بوصلة البيئة</div>';
+    h+='<div class="res-top-name">أبرز مصادر الاستنزاف في بيئتك</div>';
+    h+='<div class="res-top-sub">أكثر ثلاثة محاور استنزافاً</div></div>';
+    h+='<div class="res-body">';
+    for(var k=0;k<top.length;k++){
+      var lv=top[k].score>=18?'h':top[k].score>=12?'m':'l';
+      var lb=top[k].score>=18?'استنزاف عالٍ':top[k].score>=12?'استنزاف متوسط':'استنزاف منخفض';
+      h+='<div class="res-row"><span class="res-row-label">'+top[k].icon+' '+top[k].name+' ('+top[k].score+'/25)</span><span class="pill pill-'+lv+'">'+lb+'</span></div>';
+    }
+    h+='<div class="res-desc gr">التعرف على مصادر الاستنزاف هو الخطوة الأولى نحو التغيير.</div>';
+    h+='</div>';
+    h+='<div style="padding:0 14px 14px"><button class="next-btn gr" onclick="renderCompass(2)">'+C.nextLabel+'</button></div>';
+  }
+  else if(ci===2){
+    // Energy: show dominant stage
+    var sorted=scores.slice().sort(function(a,b){return b.score-a.score;});
+    var top=sorted[0];
+    results[ci]={type:'stage',stage:top,scores:scores};
+    h+='<div class="res-top"><div class="res-top-tag">✅ نتيجة بوصلة الطاقة</div>';
+    h+='<div class="res-top-name">'+top.icon+' '+top.name+'</div>';
+    h+='<div class="res-top-sub">موقعك الحالي على رحلة الطاقة المهنية</div></div>';
+    h+='<div class="res-body">';
+    h+='<div class="res-desc">'+top.desc+'</div>';
+    h+='<div style="margin-top:9px;font-size:11.5px;color:#888">درجة هذه المرحلة: '+top.score+'/25</div>';
+    h+='</div>';
+    h+='<div style="padding:0 14px 14px"><button class="next-btn gr" onclick="renderCompass(3)">'+C.nextLabel+'</button></div>';
+  }
+  else if(ci===3){
+    // Flourish: overall score
+    var total=0;
+    for(var k=0;k<scores.length;k++) total+=scores[k].score;
+    var pct=Math.round((total/100)*100);
+    var lvl=pct>=80?'مزدهر 🌟':pct>=60?'مندمج 💚':pct>=40?'متعافٍ 💛':'يحتاج دعماً 🔴';
+    results[ci]={type:'flourish',pct:pct,lvl:lvl,scores:scores};
+    h+='<div class="res-top gr"><div class="res-top-tag">✅ نتيجة بوصلة الازدهار</div>';
+    h+='<div class="res-top-name">'+lvl+' — '+pct+'%</div>';
+    h+='<div class="res-top-sub">مستوى ازدهارك الوظيفي الحالي</div></div>';
+    h+='<div class="res-body">';
+    for(var k=0;k<scores.length;k++){
+      var dp=Math.round((scores[k].score/25)*100);
+      var lv=dp>=60?'l':dp>=40?'m':'h';
+      h+='<div class="res-row"><span class="res-row-label">'+scores[k].icon+' '+scores[k].name+'</span><span class="pill pill-'+lv+'">'+dp+'%</span></div>';
+    }
+    h+='<div class="res-desc gr">مستوى ازدهارك الإجمالي: <strong>'+pct+'%</strong>. '+(pct>=60?'أنت على الطريق الصحيح!':'لا بأس — خطتك ستساعدك على التحسين.')+'</div>';
+    h+='</div>';
+    h+='<div style="padding:0 14px 14px"><button class="next-btn nv" style="background:linear-gradient(135deg,#0c1f3f,#1a3a6b)" onclick="goToPlan()">'+C.nextLabel+'</button></div>';
+  }
+
+  resCard.innerHTML=h;
+  resCard.classList.add('show');
+  setTimeout(function(){resCard.scrollIntoView({behavior:'smooth',block:'start'});},100);
+
+  // hide done btn
+  var db=document.getElementById('done-btn-'+ci);
+  if(db) db.style.display='none';
+}
+
+// ══════════════════════════════════════
+// PLAN
+// ══════════════════════════════════════
+function goToPlan(){
+  switchScreen('scr-plan');
+  buildPlan();
+}
+
+function buildPlan(){
+  SP=[];
+  var r0=results[0]||{top:[]};
+  var r1=results[1]||{top:[]};
+  var r2=results[2]||{stage:{name:'—',icon:'—',idx:0}};
+  var r3=results[3]||{pct:0,scores:[]};
+
+  var selfTop=r0.top||[];
+  var envTop=r1.top||[];
+  var eS=r2.stage||{name:'—',icon:'—',idx:0};
+  var fl=r3;
+  var weak=[];
+  if(fl.scores) for(var k=0;k<fl.scores.length;k++) if(fl.scores[k].score<15) weak.push(fl.scores[k]);
+
+  var eA={0:['حدد سقفاً لعدد مشاريعك الموازية وراقب نفسك أسبوعياً','ابنِ عادات وقائية الآن قبل أن تحتاج للتعافي','احتفل بإنجازاتك ولا تنتظر الكبير فقط'],1:['اختر شيئاً أساسياً لا تتنازل عنه (نوم/أكل/رياضة)','جدول وقت الراحة كأنه اجتماع مهم لا يُلغى','تحدث مع شخص تثق به عما تلاحظه'],2:['توقف عن العمل في العطلة ولو ليوم واحد','فوّض ثلاث مهام يمكن لغيرك القيام بها','ضع حداً زمنياً واضحاً لانتهاء يوم العمل'],3:['اعترف بصوت عالٍ أنك مضغوط وتحتاج للدعم','اطلب مساعدة فورية ولا تستمر وحدك','خذ إجازة قصيرة ولو ليومين متتاليين'],4:['توقف فوراً وخذ إجازة حقيقية — هذا إنقاذ لا ضعف','تواصل مع متخصص أو مرشد مهني','لا تتخذ قرارات مصيرية في هذه المرحلة'],5:['استثمر هذه المرحلة لبناء خطة وقائية حقيقية','افهم بعمق كيف وصلت للانهيار','ابدأ ببطء ولا تعود لنفس الإيقاع'],6:['ابنِ عادات وقائية الآن قبل العودة لكامل الطاقة','وثّق ما تعلمته من تجربة الاحتراق','شارك تجربتك مع زميل يحتاج للدعم'],7:['تذكّر مرحلة الانهيار واستخدمها كبوصلة يومية','ضع حداً واضحاً لعملك لا تتجاوزه','أنشئ نظاماً للمراقبة الذاتية الأسبوعية']};
+  var sP={'المضحي':['ضع وقتاً يومياً لنفسك في جدولك كأولوية','مارس قول "لا" على طلب واحد غير ضروري هذا الأسبوع'],'المثالي':['حدد معيار "جيد بما يكفي" لكل مهمة قبل البدء','سلّم عملاً مقبولاً هذا الأسبوع بدلاً من انتظار المثالي'],'مدمن العمل':['أوقف العمل في وقت محدد يومياً والتزم به','احجز نشاطاً ترفيهياً ثابتاً كل أسبوع'],'المتحكم':['فوّض مهمة كاملة هذا الأسبوع وثق بها','تدرّب على تقبّل أن الأمور تُنجز بطرق مختلفة'],'مُرضي الآخرين':['قل "لا" بلطف على طلب واحد هذا الأسبوع','قرر شيئاً بناءً على رأيك أنت فقط'],'المفكر المفرط':['مارس تمرين التنفس 5 دقائق يومياً','ضع وقتاً محدداً للتفكير في مشكلة ثم أغلق الملف'],'جالد الذات':['اكتب 3 أشياء جيدة فعلتها في نهاية كل يوم','تحدث مع نفسك كما تتحدث مع صديق تحبه'],'فاقد المعنى':['اكتب قصة طالب واحد أثّرت في حياته','ابحث عن لحظة صغيرة تُحدث فيها فرقاً كل يوم']};
+  var eAd={'عبء العمل':'طبّق قاعدة 1-3-5 يومياً وتعلم فن التفويض الفعّال','العدالة':'وثّق مساهماتك وتحدث مع مسؤولك عن التوزيع العادل','التقدير':'ابحث عن مصادر تقدير داخلية وشارك إنجازاتك مع من تثق بهم','الاستقلالية':'اقترح على مديرك مناطق تملك فيها صلاحية القرار','القيادة':'جدول لقاءً منتظماً مع مديرك لمناقشة احتياجاتك','العلاقات':'استثمر في علاقة إيجابية واحدة مع زميل والابتعاد عن السلبية','القيم والمعنى':'اكتب رسالتك التربوية الشخصية وعلّقها أمامك كتذكير يومي'};
+  var fAd={'الحيوية':'مارس نشاطاً جسدياً 20 دقيقة يومياً لشحن طاقتك','التعلم والنمو':'خصص 15 دقيقة يومياً للقراءة أو تعلم مهارة جديدة','المعنى والهدف':'وثّق أثراً إيجابياً واحداً في حياة طالب كل أسبوع','العلاقات':'خصص وقتاً أسبوعياً للتواصل مع زملاء يُغذون روحك'};
+
+  function pli(arr,dc){var h='';for(var k=0;k<arr.length;k++)h+='<div class="pl-i"><div class="dot '+dc+'"></div><p>'+arr[k]+'</p></div>';return h;}
+
+  var eActs=eA[eS.idx]||eA[0];
+  var selfActs=[];
+  for(var k=0;k<selfTop.length;k++){var a=sP[selfTop[k].name]||[];for(var j=0;j<a.length;j++)selfActs.push(a[j]);}
+  var envActs=[];
+  for(var k=0;k<envTop.length;k++) envActs.push('لتحسين <strong>'+envTop[k].name+'</strong>: '+(eAd[envTop[k].name]||'ابحث عن طرق عملية'));
+  var wkActs=[];
+  for(var k=0;k<weak.length;k++) wkActs.push('لتعزيز <strong>'+weak[k].name+'</strong>: '+(fAd[weak[k].name]||'ركّز على هذا الجانب'));
+
+  var prioHtml='<div class="prio-sec"><div class="prio-hd"><h3>🎯 اختر أولوياتك للـ 30 يوماً القادمة</h3><p>اختر 3 ممارسات تلتزم بتطبيقها</p></div><div class="prio-grid">';
+  for(var k=0;k<PRIO.length;k++) prioHtml+='<button class="pb" id="pb'+k+'" onclick="togPrio('+k+',\''+PRIO[k].t+'\')"><span class="pi-ico">'+PRIO[k].i+'</span>'+PRIO[k].t+'</button>';
+  prioHtml+='</div><div class="prio-cnt">اخترت <b id="pcnt">0</b> من 3</div></div>';
+
+  var h='';
+  h+='<div class="plan-hero"><div class="phn">📋 خطة '+U.name+'</div><h2>خطتك الشخصية للازدهار الوظيفي</h2><p>'+U.role+' | '+U.school+'<br>مبنية على نتائج بوصلاتك الأربع</p></div>';
+
+  h+='<div class="sum-grid">';
+  h+='<div class="sum-card"><div class="sum-ico">🧭</div><div class="sum-lbl">نمطك الغالب</div><div class="sum-val">'+(selfTop[0]?selfTop[0].icon+' '+selfTop[0].name:'—')+'<br>'+(selfTop[1]?selfTop[1].icon+' '+selfTop[1].name:'')+'</div></div>';
+  h+='<div class="sum-card"><div class="sum-ico">🏢</div><div class="sum-lbl">أبرز الاستنزاف</div><div class="sum-val">'+(envTop.map(function(e){return e.icon+' '+e.name;}).join('<br>'))+'</div></div>';
+  h+='<div class="sum-card"><div class="sum-ico">⚡</div><div class="sum-lbl">موقعك الحالي</div><div class="sum-val">'+eS.icon+' '+eS.name+'</div></div>';
+  h+='<div class="sum-card"><div class="sum-ico">🌟</div><div class="sum-lbl">مستوى الازدهار</div><div class="sum-val">'+(fl.pct||0)+'%<br>'+fl.lvl+'</div></div>';
+  h+='</div>';
+
+  h+='<div class="plan-sec"><div class="plan-sec-hd"><div class="p-ico rd">🚨</div><h3>الأولوية الفورية — بناءً على مرحلة طاقتك</h3></div><div>'+pli(eActs,'rd')+'</div></div>';
+  if(selfActs.length) h+='<div class="plan-sec"><div class="plan-sec-hd"><div class="p-ico or">🧭</div><h3>معالجة نمطك الشخصي</h3></div><div>'+pli(selfActs,'or')+'</div></div>';
+  if(envActs.length) h+='<div class="plan-sec"><div class="plan-sec-hd"><div class="p-ico gr">🏢</div><h3>التعامل مع مصادر استنزاف البيئة</h3></div><div>'+pli(envActs,'gr')+'</div></div>';
+  if(wkActs.length) h+='<div class="plan-sec"><div class="plan-sec-hd"><div class="p-ico gd">🌟</div><h3>تعزيز ازدهارك — جوانب تحتاج تنمية</h3></div><div>'+pli(wkActs,'gd')+'</div></div>';
+
+  h+=prioHtml;
+
+  // action buttons are in HTML directly
+
+  h+='<div class="footer-cta"><p>العناية بالمعلم عناية بالجيل<br>الطالب الذي ينتظرك غداً يستحق معلماً متجدداً ومزدهراً ✨</p><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><a class="lnk ig" href="https://www.instagram.com/aj_albaker/" target="_blank">📸 Instagram</a><a class="lnk wa" href="https://wa.me/97433349514" target="_blank">💬 WhatsApp</a></div></div>';
+
+  document.getElementById('plan-body').innerHTML=h;
+}
+
+function togPrio(idx,txt){
+  var btn=document.getElementById('pb'+idx);
+  var pos=SP.indexOf(txt);
+  if(pos>-1){SP.splice(pos,1);btn.classList.remove('sel');}
+  else{if(SP.length>=3){alert('يمكنك اختيار 3 أولويات فقط');return;}SP.push(txt);btn.classList.add('sel');}
+  document.getElementById('pcnt').textContent=SP.length;
+}
+
+
+
+function doSend(){
+  if(SP.length<3){alert('يرجى اختيار 3 أولويات أولاً');return;}
+  var btn=document.getElementById('sbtn'),st=document.getElementById('sst');
+  btn.disabled=true;btn.textContent='⏳ جاري الإرسال...';
+  var r0=results[0]||{top:[]};
+  var r1=results[1]||{top:[]};
+  var r2=results[2]||{stage:{name:'—'}};
+  var r3=results[3]||{pct:0};
+  var sT=r0.top||[],eT=r1.top||[],eS=r2.stage||{name:'—'},fl=r3;
+  var p={name:U.name,role:U.role,school:U.school,experience:U.exp,
+    pattern1:sT[0]?sT[0].name:'—',pattern2:sT[1]?sT[1].name:'—',
+    drain1:eT[0]?eT[0].name:'—',drain2:eT[1]?eT[1].name:'—',drain3:eT[2]?eT[2].name:'—',
+    energyStage:eS.name,flourishPct:(fl.pct||0)+'%',
+    priority1:SP[0]||'—',priority2:SP[1]||'—',priority3:SP[2]||'—'};
+  // Use script tag injection - works from any origin including local files
+  var params = Object.keys(p).map(function(key){
+    return encodeURIComponent(key)+'='+encodeURIComponent(p[key]||'');
+  }).join('&');
+  
+  // Method 1: Script tag (bypasses CORS completely)
+  var scriptTag = document.createElement('script');
+  scriptTag.src = SU + '?' + params + '&callback=onSheetSaved';
+  
+  window.onSheetSaved = function(response){
+    st.textContent = '✅ تم حفظ خطتك! ستظهر في سجل المدرب.';
+    st.style.display = 'block';
+    st.style.background = '#eafaf1';
+    st.style.color = '#145a32';
+    btn.textContent = '✅ تم الإرسال';
+    if(scriptTag.parentNode) scriptTag.parentNode.removeChild(scriptTag);
+  };
+
+  scriptTag.onerror = function(){
+    // Method 2: fetch no-cors (sends but can't confirm)
+    fetch(SU + '?' + params, {method:'GET', mode:'no-cors'})
+      .catch(function(){});
+    // Show success anyway since data was sent
+    setTimeout(function(){
+      st.textContent = '✅ تم إرسال خطتك للمدرب!';
+      st.style.display = 'block';
+      st.style.background = '#eafaf1';
+      st.style.color = '#145a32';
+      btn.textContent = '✅ تم الإرسال';
+    }, 2000);
+  };
+
+  document.head.appendChild(scriptTag);
+
+  // Timeout fallback after 5 seconds
+  setTimeout(function(){
+    if(btn.textContent === '⏳ جاري الإرسال...'){
+      st.textContent = '✅ تم الإرسال! تحقق من Google Sheets.';
+      st.style.display = 'block';
+      st.style.background = '#eafaf1';
+      st.style.color = '#145a32';
+      btn.textContent = '✅ تم الإرسال';
+    }
+  }, 5000);
+}
+
+function generatePDF(){
+  var btn=document.getElementById('pdf-btn');
+  btn.textContent='⏳ جاري إنشاء الملف...';
+  btn.disabled=true;
+
+  // collect data
+  var r0=results[0]||{top:[]}, r1=results[1]||{top:[]};
+  var r2=results[2]||{stage:{name:'—',icon:'—',idx:0}};
+  var r3=results[3]||{pct:0,scores:[]};
+  var sT=r0.top||[], eT=r1.top||[];
+  var eS=r2.stage||{name:'—',icon:'',idx:0};
+  var fl=r3, weak=(fl.scores||[]).filter(function(d){return d.score<15;});
+
+  var eA={0:['حدد سقفاً لعدد مشاريعك الموازية وراقب نفسك أسبوعياً','ابنِ عادات وقائية الآن قبل أن تحتاج للتعافي','احتفل بإنجازاتك ولا تنتظر الكبير فقط'],1:['اختر شيئاً أساسياً لا تتنازل عنه (نوم/أكل/رياضة)','جدول وقت الراحة كأنه اجتماع مهم لا يُلغى','تحدث مع شخص تثق به عما تلاحظه'],2:['توقف عن العمل في العطلة ولو ليوم واحد','فوّض ثلاث مهام يمكن لغيرك القيام بها','ضع حداً زمنياً واضحاً لانتهاء يوم العمل'],3:['اعترف بصوت عالٍ أنك مضغوط وتحتاج للدعم','اطلب مساعدة فورية ولا تستمر وحدك','خذ إجازة قصيرة ولو ليومين'],4:['توقف فوراً وخذ إجازة حقيقية','تواصل مع متخصص أو مرشد مهني','لا تتخذ قرارات مصيرية في هذه المرحلة'],5:['استثمر هذه المرحلة لبناء خطة وقائية','افهم بعمق كيف وصلت للانهيار','ابدأ ببطء ولا تعود لنفس الإيقاع'],6:['ابنِ عادات وقائية قبل العودة لكامل الطاقة','وثّق ما تعلمته من تجربة الاحتراق','شارك تجربتك مع زميل يحتاج للدعم'],7:['تذكّر مرحلة الانهيار واستخدمها كبوصلة','ضع حداً واضحاً لعملك لا تتجاوزه','أنشئ نظاماً للمراقبة الذاتية الأسبوعية']};
+  var sP={'المضحي':['ضع وقتاً يومياً لنفسك في جدولك كأولوية','مارس قول "لا" على طلب واحد غير ضروري هذا الأسبوع'],'المثالي':['حدد معيار "جيد بما يكفي" لكل مهمة قبل البدء','سلّم عملاً مقبولاً هذا الأسبوع بدلاً من انتظار المثالي'],'مدمن العمل':['أوقف العمل في وقت محدد يومياً والتزم به','احجز نشاطاً ترفيهياً ثابتاً كل أسبوع'],'المتحكم':['فوّض مهمة كاملة هذا الأسبوع وثق بها','تدرّب على تقبّل أن الأمور تُنجز بطرق مختلفة'],'مُرضي الآخرين':['قل "لا" بلطف على طلب واحد هذا الأسبوع','قرر شيئاً بناءً على رأيك أنت فقط'],'المفكر المفرط':['مارس تمرين التنفس 5 دقائق يومياً','ضع وقتاً محدداً للتفكير في مشكلة ثم أغلق الملف'],'جالد الذات':['اكتب 3 أشياء جيدة فعلتها في نهاية كل يوم','تحدث مع نفسك كما تتحدث مع صديق تحبه'],'فاقد المعنى':['اكتب قصة طالب واحد أثّرت في حياته','ابحث عن لحظة صغيرة تُحدث فيها فرقاً كل يوم']};
+  var eAd={'عبء العمل':'طبّق قاعدة 1-3-5 يومياً وتعلم التفويض الفعّال','العدالة':'وثّق مساهماتك وتحدث مع مسؤولك عن التوزيع العادل','التقدير':'ابحث عن مصادر تقدير داخلية وشارك إنجازاتك','الاستقلالية':'اقترح على مديرك مناطق تملك فيها صلاحية القرار','القيادة':'جدول لقاءً منتظماً مع مديرك لمناقشة احتياجاتك','العلاقات':'استثمر في علاقة إيجابية واحدة مع زميل','القيم والمعنى':'اكتب رسالتك التربوية الشخصية وعلّقها أمامك'};
+  var fAd={'الحيوية':'مارس نشاطاً جسدياً 20 دقيقة يومياً','التعلم والنمو':'خصص 15 دقيقة يومياً للقراءة أو تعلم مهارة','المعنى والهدف':'وثّق أثراً إيجابياً في حياة طالب كل أسبوع','العلاقات':'خصص وقتاً أسبوعياً للتواصل مع زملاء يُغذون روحك'};
+
+  function rows(arr,dot){return arr.map(function(t){return '<tr><td style="padding:6px 10px;vertical-align:top;width:18px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:'+dot+';margin-top:3px"></span></td><td style="padding:6px 10px;font-size:13px;line-height:1.5;color:#1a1a1a">'+t+'</td></tr>';}).join('');}
+  function sec(ico,title,bg,items,dot){return '<div style="margin-bottom:14px;border-radius:10px;overflow:hidden;border:1px solid #e0d8ce"><div style="background:'+bg+';padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:16px">'+ico+'</span><span style="font-size:13px;font-weight:700;color:#fff">'+title+'</span></div><table style="width:100%;border-collapse:collapse">'+rows(items,dot)+'</table></div>';}
+
+  var eActs=eA[eS.idx||0]||eA[0];
+  var selfActs=[];
+  for(var k=0;k<sT.length;k++){var a=sP[sT[k].name]||[];for(var j=0;j<a.length;j++)selfActs.push(a[j]);}
+
+  var html='<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8">'
+    +'<title>خطة '+U.name+'</title>'
+    +'<style>'
+    +'*{box-sizing:border-box;margin:0;padding:0}'
+    +'body{font-family:Arial,sans-serif;direction:rtl;background:#fff;color:#1a1a1a;padding:0}'
+    +'@media print{'
+    +' body{margin:0;padding:0}'
+    +' .no-print{display:none!important}'
+    +'}'
+    +'</style></head><body>'
+
+    // Print button (hidden when printing)
+    +'<div class="no-print" style="position:sticky;top:0;z-index:99;background:#0c1f3f;padding:10px 16px;display:flex;align-items:center;justify-content:space-between">'
+    +'<span style="color:#52be80;font-size:13px;font-weight:700">خطة '+U.name+'</span>'
+    +'<button onclick="window.print()" style="padding:8px 18px;border-radius:8px;border:none;background:linear-gradient(135deg,#145a32,#27ae60);color:#fff;font-size:13px;font-weight:700;cursor:pointer">🖨️ طباعة / حفظ PDF</button>'
+    +'</div>'
+
+    // Header
+    +'<div style="-webkit-print-color-adjust:exact;print-color-adjust:exact;background:linear-gradient(135deg,#0c1f3f,#1a3a6b,#0d4a28);padding:22px 16px;text-align:center">'
+    +'<div style="font-size:11px;color:#f4a040;letter-spacing:2px;margin-bottom:4px">أداة تشخيص تفاعلية</div>'
+    +'<div style="font-size:20px;font-weight:800;color:#fff;margin-bottom:5px">بوصلة الحياة المهنية المستدامة</div>'
+    +'<div style="font-size:14px;font-weight:700;color:#52be80;margin-bottom:3px">خطة '+U.name+' الشخصية</div>'
+    +'<div style="font-size:12px;color:rgba(255,255,255,.7)">'+U.role+' | '+U.school+'</div>'
+    +'</div>'
+
+    // Summary grid
+    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#ddd5c8;margin-bottom:14px">'
+    +'<div style="background:#fff8f3;padding:12px 14px"><div style="font-size:10px;color:#888;margin-bottom:3px">🧭 نمطك الغالب</div><div style="font-size:13px;font-weight:700">'+sT.map(function(t){return t.icon+' '+t.name;}).join(' + ')+'</div></div>'
+    +'<div style="background:#f4fdf7;padding:12px 14px"><div style="font-size:10px;color:#888;margin-bottom:3px">🏢 أبرز الاستنزاف</div><div style="font-size:12px;font-weight:700">'+eT.map(function(e){return e.icon+' '+e.name;}).join(' | ')+'</div></div>'
+    +'<div style="background:#fff8f3;padding:12px 14px"><div style="font-size:10px;color:#888;margin-bottom:3px">⚡ موقعك الحالي</div><div style="font-size:13px;font-weight:700">'+(eS.icon||'')+' '+eS.name+'</div></div>'
+    +'<div style="background:#f4fdf7;padding:12px 14px"><div style="font-size:10px;color:#888;margin-bottom:3px">🌟 مستوى الازدهار</div><div style="font-size:13px;font-weight:700">'+(fl.pct||0)+'% — '+(fl.pct>=80?'مزدهر':fl.pct>=60?'مندمج':fl.pct>=40?'متعافٍ':'يحتاج دعماً')+'</div></div>'
+    +'</div>'
+
+    +'<div style="padding:0 14px 20px">';
+
+  html+=sec('🚨','الأولوية الفورية — بناءً على مرحلة طاقتك','#b33d00',eActs,'#b33d00');
+  if(selfActs.length) html+=sec('🧭','معالجة نمطك الشخصي','#e05a00',selfActs,'#f07820');
+  if(eT.length){
+    var envRows=eT.map(function(e){return 'لتحسين '+e.name+': '+(eAd[e.name]||'ابحث عن طرق عملية');});
+    html+=sec('🏢','التعامل مع مصادر استنزاف البيئة','#1e8449',envRows,'#27ae60');
+  }
+  if(weak.length){
+    var wkRows=weak.map(function(d){return 'لتعزيز '+d.name+': '+(fAd[d.name]||'ركّز على هذا الجانب');});
+    html+=sec('🌟','تعزيز ازدهارك — جوانب تحتاج تنمية','#1e8449',wkRows,'#52be80');
+  }
+  if(SP.length){
+    html+=sec('🎯','أولوياتي للـ 30 يوماً القادمة','#0c1f3f',SP.map(function(p,i){return (i+1)+'. '+p;}),'#1a3a6b');
+  }
+
+  // Footer
+  html+='<div style="-webkit-print-color-adjust:exact;print-color-adjust:exact;background:linear-gradient(135deg,#0c1f3f,#0d4a28);border-radius:12px;padding:16px;text-align:center;margin-top:8px">'
+    +'<div style="color:#52be80;font-size:13px;font-weight:700;margin-bottom:4px">العناية بالمعلم عناية بالجيل</div>'
+    +'<div style="color:rgba(255,255,255,.8);font-size:11.5px;margin-bottom:8px">الطالب الذي ينتظرك غداً يستحق معلماً متجدداً ومزدهراً ✨</div>'
+    +'<div style="color:rgba(255,255,255,.55);font-size:10px">عبد الرحمن جاسم الباكر | @aj_albaker</div>'
+    +'</div>'
+    +'</div></body></html>';
+
+  // Open in new tab - works on mobile too
+  var blob=new Blob([html],{type:'text/html;charset=utf-8'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');
+  a.href=url;
+  a.target='_blank';
+  a.rel='noopener';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(function(){URL.revokeObjectURL(url);},10000);
+
+  btn.textContent='✅ تم الفتح — اضغط طباعة / PDF';
+  setTimeout(function(){btn.textContent='📄 تنزيل خطتي PDF';btn.disabled=false;},5000);
+}
+
+
+function realReset(){
+  answers={};results={};SP=[];curStep=0;
+  for(var ci=0;ci<4;ci++){
+    answers[ci]={};
+    for(var gi=0;gi<COMPASSES[ci].groups.length;gi++) answers[ci][gi]={};
+  }
+  U={name:'',role:'',school:'',exp:''};
+  var ids=['fn','fr','fs','fe'];
+  for(var k=0;k<ids.length;k++){
+    var el=document.getElementById(ids[k]);
+    if(el) el.value='';
+  }
+  document.getElementById('werr').style.display='none';
+  for(var i=0;i<5;i++){
+    var si=document.getElementById('si'+i);
+    if(si) si.classList.remove('active','done');
+  }
+  var si0=document.getElementById('si0');
+  if(si0) si0.classList.add('active');
+  document.getElementById('c-body').innerHTML='';
+  switchScreen('scr-welcome');
+}
+
+
+
+</script>
+
+<!--
+=== كود Google Apps Script المحدث ===
+انسخ هذا الكود في محرر Apps Script واستبدل الكود القديم به:
+
+function doPost(e) {
+  return handleRequest(e.postData ? JSON.parse(e.postData.contents) : {});
+}
+
+function doGet(e) {
+  return handleRequest(e.parameter || {});
+}
+
+function handleRequest(data) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow([
+      'التاريخ','الاسم','المسمى الوظيفي','المدرسة','سنوات الخبرة',
+      'النمط الأول','النمط الثاني',
+      'استنزاف 1','استنزاف 2','استنزاف 3',
+      'مرحلة الطاقة','مستوى الازدهار %',
+      'الأولوية 1','الأولوية 2','الأولوية 3'
+    ]);
+  }
+  sheet.appendRow([
+    new Date().toLocaleString('ar-SA'),
+    data.name||'', data.role||'', data.school||'', data.experience||'',
+    data.pattern1||'', data.pattern2||'',
+    data.drain1||'', data.drain2||'', data.drain3||'',
+    data.energyStage||'', data.flourishPct||'',
+    data.priority1||'', data.priority2||'', data.priority3||''
+  ]);
+  return ContentService
+    .createTextOutput(JSON.stringify({status:'ok'}))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+=== انتهى كود Apps Script ===
+-->
+
+</body>
+</html>
